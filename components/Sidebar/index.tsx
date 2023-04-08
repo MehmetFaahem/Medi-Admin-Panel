@@ -57,11 +57,12 @@ const Sections = [
 
 function Sidebar({ className }: any) {
   return (
-    <aside className="bg-slate-800">
+    <aside className="bg-slate-800 fixed">
       {Sections.map((section, index) => (
         <Link
           className="bg-slate-800 hover:bg-slate-600 py-[13px] px-[15px] mb-[10px]"
           href={section.link}
+          key={index}
         >
           <FontAwesomeIcon
             icon={section.icon}
