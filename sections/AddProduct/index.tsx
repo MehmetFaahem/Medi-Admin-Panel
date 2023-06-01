@@ -26,7 +26,7 @@ function AddProduct() {
 
     console.log(formData);
 
-    await fetch("http://localhost:3003/api/products", {
+    await fetch("https://medi-backend.vercel.app/api/products", {
       method: "POST",
       body: formData,
     })
