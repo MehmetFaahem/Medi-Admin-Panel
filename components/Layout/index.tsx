@@ -1,6 +1,8 @@
 import { Manrope } from "@next/font/google";
 import Head from "next/head";
 import Sidebar from "../Sidebar";
+import { useSelector } from "react-redux";
+import Login from "../../sections/Login";
 
 const manrope = Manrope({
   weight: ["200", "300", "400", "500", "600", "700", "800"],
@@ -8,6 +10,10 @@ const manrope = Manrope({
 });
 
 export default function Layout({ children, pageTitle }: any) {
+  const status = useSelector((state: any) => state.logged);
+  if (!status) {
+    return <Login />;
+  }
   return (
     <>
       <Head>
