@@ -9,6 +9,7 @@ import {
   faPoll,
   faBagShopping,
   faTruckPlane,
+  faShoppingBag,
 } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan, faIdBadge } from "@fortawesome/free-regular-svg-icons";
 
@@ -22,6 +23,11 @@ const Sections = [
     title: "Products",
     link: "/products",
     icon: faShoppingBasket,
+  },
+  {
+    title: "Product List",
+    link: "/product-list",
+    icon: faShoppingBag,
   },
   {
     title: "Orders",
