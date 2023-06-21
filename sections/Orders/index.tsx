@@ -30,7 +30,9 @@ function OrderListSection() {
             }
           })
           .map((item: any, index: any) => (
-            <OrderListCard item={item} index={index} />
+            <div key={index}>
+              <OrderListCard item={item} index={index} />
+            </div>
           ))}
       </div>
     </section>
