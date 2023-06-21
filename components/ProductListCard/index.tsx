@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "../Modal";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ProductListCard({ item, index }: any) {
   const [show, setShow] = useState(false);
@@ -11,7 +12,6 @@ function ProductListCard({ item, index }: any) {
     category: item.category,
     indication: item.indication,
     pharmacology: item.pharmacology,
-    _id: item._id,
   });
 
   const notify = () => toast("Your Product Is Successfully Updated");
@@ -25,7 +25,7 @@ function ProductListCard({ item, index }: any) {
 
     console.log(formData);
 
-    await fetch(`https://medi-backend.vercel.app/api/products`, {
+    await fetch(`https://medi-backend.vercel.app/api/products/${item._id}`, {
       method: "PUT",
       body: formData,
     })
@@ -124,6 +124,7 @@ function ProductListCard({ item, index }: any) {
           Edit
         </button>
       </div>
+      <ToastContainer />
     </div>
   );
 }
