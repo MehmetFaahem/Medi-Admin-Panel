@@ -83,7 +83,7 @@ function OrderListCard({ item, index }: any) {
         <h1 className="text-[15px] mt-2 font-medium">Email: {item.email}</h1>
         <h1 className="text-[15px] font-medium">Phone: {item.phone}</h1>
         {item.orders.map((item: any, index: any) => (
-          <section className="mt-6">
+          <section className="mt-6" key={index}>
             <h1 className="text-[24px] font-semibold">{item.order_date}</h1>
             <h1 className="text-[15px] mt-2 font-medium">
               Total: {item.total}
