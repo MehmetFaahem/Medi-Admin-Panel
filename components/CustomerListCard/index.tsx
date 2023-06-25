@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "../Modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+import { fetchUsers } from "../../redux/userSlice";
 
 export default function CustomerListCard({ item, index }: any) {
   const [show, setShow] = useState(false);
@@ -15,36 +17,37 @@ export default function CustomerListCard({ item, index }: any) {
     gender: item.gender,
   });
 
+  useEffect(() => {
+    fetchUsers();
+  }, [details]);
+
   const notify = () => toast("User Is Successfully Updated");
 
   const Update = async ({ id }: any) => {
-    await fetch(`http://localhost:3003/api/users/${item._id}`, {
-      method: "PUT",
-      body: JSON.stringify(details),
-    })
-      .then((response) => {
-        response.json();
-        if (response.status == 201) {
+    // await fetch(`http://localhost:3003/api/users/${item._id}`, {
+    //   method: "PUT",
+    //   body: JSON.stringify(details),
+    // })
+    //   .then((response) => {
+    //     response.json();
+    //     if (response.status == 201) {
+    //       notify();
+    //       setShow(false);
+    //     }
+    //   })
+    //   .then((data) => console.log(data));
+
+    axios
+      .put(`http://localhost:3003/api/users/${item._id}`, details)
+      .then(function (response) {
+        if (response.status == 200) {
           notify();
           setShow(false);
         }
       })
-      .then((data) => console.log(data));
-
-    // axios
-    //   .put(
-    //     `https://medi-backend.vercel.app/api/products/${item._id}`,
-    //     formData,
-    //     {
-    //       withCredentials: true,
-    //     }
-    //   )
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
+      .catch(function (error) {
+        console.log(error);
+      });
   };
   return (
     <div
@@ -82,7 +85,7 @@ export default function CustomerListCard({ item, index }: any) {
           <input
             value={details.discount}
             onChange={(e) => {
-              setDetails({ ...details, discount: parseInt(e.target.value) });
+              setDetails({ ...details, discount: e.target.value });
             }}
             className="w-[400px] border-black border-2 border-solid mt-[10px] h-[70px] bg-white px-[10px]"
           />

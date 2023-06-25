@@ -139,8 +139,11 @@ function OrderListCard({ item, index }: any) {
                   {!show ? "Click to See Orders" : "Shrink List"}
                 </button>
                 {show
-                  ? item.ordered.map((ord: any) => (
-                      <div className="bg-slate-800 text-[14px] mt-[15px] p-[10px] rounded-lg w-[200px] h-[150px]">
+                  ? item.ordered.map((ord: any, index: any) => (
+                      <div
+                        key={index}
+                        className="bg-slate-800 text-[14px] mt-[15px] p-[10px] rounded-lg w-[200px] h-[150px]"
+                      >
                         <p>Name: {ord.name}</p>
                         <p>Quantity: {ord.quantity}</p>
                         <p>Category: {ord.category}</p>
