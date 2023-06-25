@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modal from "../Modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 function ProductListCard({ item, index }: any) {
   const [show, setShow] = useState(false);
@@ -33,9 +34,25 @@ function ProductListCard({ item, index }: any) {
         response.json();
         if (response.status == 201) {
           notify();
+          setShow(false);
         }
       })
       .then((data) => console.log(data));
+
+    // axios
+    //   .put(
+    //     `https://medi-backend.vercel.app/api/products/${item._id}`,
+    //     formData,
+    //     {
+    //       withCredentials: true,
+    //     }
+    //   )
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
   };
 
   return (

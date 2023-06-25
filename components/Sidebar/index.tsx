@@ -30,8 +30,14 @@ const Sections = [
     icon: faShoppingBag,
   },
   {
-    title: "Orders",
+    title: "New Orders",
     link: "/orders",
+    icon: faIdBadge,
+  },
+
+  {
+    title: "Delivered",
+    link: "/delivered",
     icon: faIdBadge,
   },
   {

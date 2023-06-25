@@ -4,8 +4,9 @@ import ProductListCard from "../../components/ProductListCard";
 import OrderListCard from "../../components/OrderListCard";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers } from "../../redux/userSlice";
+import DeliveredListCard from "../../components/DeliveredListCard";
 
-function OrderListSection() {
+function DeliveredListSection() {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
 
@@ -37,7 +38,7 @@ function OrderListSection() {
           })
           .map((item: any, index: any) => (
             <div key={index} className="mt-6">
-              <OrderListCard item={item} index={index} />
+              <DeliveredListCard item={item} index={index} />
             </div>
           ))}
       </div>
@@ -45,4 +46,4 @@ function OrderListSection() {
   );
 }
 
-export default OrderListSection;
+export default DeliveredListSection;

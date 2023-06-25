@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
-function OrderListCard({ item, index }: any) {
+function DeliveredListCard({ item, index }: any) {
   const notify = () => toast("Order Successfully Deleted");
   const notifytodeliver = () => toast("Order Successfully Delivered");
 
@@ -39,6 +39,16 @@ function OrderListCard({ item, index }: any) {
         console.error(error);
       });
   };
+
+  if (
+    item.orders.filter((value: any) => {
+      if (value.delivered == true) {
+        return value;
+      }
+    }).length < 1
+  ) {
+    return null;
+  }
 
   return (
     <div
@@ -119,7 +129,7 @@ function OrderListCard({ item, index }: any) {
         <div className="grid grid-cols-3 grid-flow-row gap-[50px]">
           {item.orders
             .filter((value: any) => {
-              if (value.delivered == false) {
+              if (value.delivered == true) {
                 return value;
               }
             })
@@ -150,15 +160,15 @@ function OrderListCard({ item, index }: any) {
                     ))
                   : null}
                 <div className="flex my-4 space-x-4">
-                  <button
+                  {/* <button
                     onClick={() => DeliverOrders(item)}
                     className="text-[16px] rounded-lg text-black p-1 bg-slate-300"
                   >
                     Set as Delivered
-                  </button>
+                  </button> */}
                   <button
                     onClick={() => DeleteOrders(item.order_id)}
-                    className="text-[16px] text-red-600"
+                    className="text-[16px] p-1 bg-red-700 rounded-lg text-white"
                   >
                     Delete
                   </button>
@@ -175,4 +185,4 @@ function OrderListCard({ item, index }: any) {
   );
 }
 
-export default OrderListCard;
+export default DeliveredListCard;
